@@ -78,6 +78,7 @@ export default {
             text: error.response.data.error,
             color: "error",
           });
+          console.log("Bandera error 1");
         });
     },
     clearForm() {

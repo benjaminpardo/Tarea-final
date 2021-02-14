@@ -33,6 +33,11 @@
         <v-icon class="hidden-sm-and-up">mdi-account-plus</v-icon>
       </v-btn>
 
+      <v-btn class="ml-2" text to="../views/ListaTareas">
+        <span class="hidden-sm-and-down">Lista de tareas</span>
+        <v-icon class="hidden-sm-and-up">mdi-account-plus</v-icon>
+      </v-btn>
+
       <v-btn v-if="isAdmin" class="ml-2" text to="/admin/users">
         <span class="hidden-sm-and-down">Usuarios</span>
         <v-icon class="hidden-sm-and-up">mdi-account-plus</v-icon>

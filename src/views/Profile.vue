@@ -6,6 +6,7 @@
       <h2>Apellido: {{ user.lastName }}</h2>
       <h2>Correo: {{ user.email }}</h2>
       <h2>Rol: {{ user.role }}</h2>
+      <h2>ID: {{ user._id }}</h2>
     </v-row>
   </v-container>
 </template>

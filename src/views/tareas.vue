@@ -20,6 +20,8 @@
       
       <v-btn color="success" class="m-auto ml-1" @click="crearTarea()"
               >Crear tarea</v-btn>
+      <!-- <v-btn color="success" class="m-auto ml-1" @click="getTasks()"
+              >Traer tareas</v-btn> -->
     </div>
 
     <TaskCard :tasks="todos">
@@ -48,13 +50,14 @@
 <script>
 import { mapState } from 'vuex'
 import { mapMutations } from "vuex";
-import axios from "axios";
+// import axios from "axios";
 import Api from "@/services/api.service";
 export default {
   data() {
     
     return {
       registerService: new Api("views/tareas"),
+      getTareasServices: new Api("views/tareas"),
       usuario: localStorage.user,
 
       tarea:{
@@ -88,7 +91,8 @@ export default {
           });
           console.log("Método setSnack");
           //this.$router.push("../views/tareas");
-         
+          this.todos.push(this.tarea);
+          
         })
         .catch((error) => {
           this.setSnack({
@@ -98,14 +102,26 @@ export default {
           });
         });
         console.log("Catch error");
+        
     },
 
     getTasks() {
-      axios
-        .get("/views/tareas/")
-        .then((data) => {
-          this.todos = data.data;
-          // console.log(data);
+      this.getTareasServices
+        .save(this.user._id)
+        .then(() => {
+          console.log("Id guardado");
+          this.setSnack({
+            isOpen: true,
+            text: `Tareas recopiladas`,
+            color: "success",
+          });
+        })
+        .catch((error) => {
+          this.setSnack({
+            isOpen: true,
+            text: error.response.data.error,
+            color: "error",
+          });
         });
     },
     addNewTodo() {
@@ -120,6 +136,19 @@ export default {
        
         console.log("Tarea creada");
       }
+    },
+    addTarea() {
+      
+        this.todos.push({
+          title: this.tarea.titulo,
+          descripcion: this.tarea.descripcion,
+          status: false,
+        });
+        this.titulo = "";
+        this.descripcion = "";
+       
+        console.log("Tarea creada");
+      
     },
     deleteTodo(index) {
       this.trash.push(this.todos[index]);

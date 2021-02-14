@@ -8,7 +8,7 @@
     >
       <v-card-text class="d-flex align-center">
         <span>
-          <h4>Titulo tarea</h4>{{ todo.title }}
+          <h4>Titulo tarea</h4>{{ todo.titulo }}
         </span>
         <span>
           <h4>Descripción tarea</h4>{{ todo.descripcion }}

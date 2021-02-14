@@ -26,6 +26,11 @@ const routes = [
     component: () => import('../views/tareas')
   },
   {
+    path: '/views/ListaTareas',
+    name: 'ListaTareas',
+    component: () => import('../views/ListaTareas')
+  },
+  {
     path: '/admin',
     component: () => import('../layouts/AdminLayout'),
     beforeEnter: (to, from, next) => {
